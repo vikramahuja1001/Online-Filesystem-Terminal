@@ -1,0 +1,36 @@
+*{
+	margin:0;
+	padding:0;
+}
+
+body{
+//	background-color:#252525;
+	font:15px Calibri,Arial,sans-serif;
+}
+
+/* Styling the page */
+
+#page{
+	width:890px;
+	margin:20px auto;
+}
+
+#promoIMG{
+	margin-bottom:15px;
+	text-align:center;
+}
+
+
+
+/* Hyperlink styles */
+
+a, a:visited {
+	text-decoration:underline;
+	outline:none;
+	color:#4086c7;
+}
+
+a:hover{
+	border-bottom:1px dashed transparent;
+	text-decoration:none;
+}

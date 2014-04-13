@@ -1,0 +1,99 @@
+.loader {
+	position: fixed;
+  	left: 0px;
+      	top: 0px;
+     	width: 100%;
+       	height: 100%;
+	background-color:#252525;
+	background: url('../img/loading.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+
+
+*{
+	/* A universal page reset */
+	margin:0;
+	padding:0;
+}
+
+body{
+	/* Setting default text color, background and a font stack */
+	background-image: url(../img/Road.jpg) ;
+	font-size:14px;
+	color:#fcfcfc;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+/* The bouncing box */
+
+#box{
+	height:500px;
+	padding:20px;
+	margin-top:-10px;
+	padding-top:30px;
+	width:1200px;
+	color:#494848;
+	text-shadow:1px 1px 0 white;
+	font-family:'Myriad Pro',Arial,Helvetica,sans-serif;
+}
+
+
+#main,
+a.button{
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+}
+
+/* Styling the big button */
+
+a.button{
+	color:white;
+	letter-spacing:-2px;
+	//padding:20px;
+	display:block;
+	text-shadow:1px 1px 0 #145982;
+	font-family:'Myriad Pro',Arial,Helvetica,sans-serif;
+	font-size:20px;
+	font-weight:bold;
+	text-align:center;
+	width:350px;
+	border:1px solid #60b4e5;
+	margin:550px auto;
+	margin-bottom:0;
+	/*
+		CSS3 gradients for webkit and mozilla browsers,
+		fallback color for the rest:
+	*/
+	background-color: #59aada;
+	background-image: -moz-linear-gradient(#5eb2e2, #4f9cca);
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#5eb2e2), to(#4f9cca));
+}
+
+a.button:hover{
+	text-decoration:none;
+	background-color: #5eb2e2;
+	background-image: -moz-linear-gradient(#6bbbe9, #57a5d4);
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#6bbbe9), to(#57a5d4));
+}
+
+/* Only needed for the demonstration page */
+
+
+h1{
+	padding:30px 0;
+	text-align:center;
+	text-shadow:0 1px 1px black;
+	margin-bottom:30px;
+	font-size:24px;
+	font-family:"Myriad Pro",Arial,Helvetica,sans-serif;
+}
+
+a, a:visited {
+	color:#0196e3;
+	text-decoration:none;
+	outline:none;
+}
+
+a:hover{
+	text-decoration:underline;
+}

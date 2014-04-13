@@ -1,0 +1,16 @@
+body {
+font-family: Tahoma;
+font-size: 18px;
+}
+
+#container {
+height:500px;
+width:500px;
+border:1px solid black;
+}
+
+#messages {
+height: 350px;
+border-bottom: 10px solid black;
+overflow: auto;
+}
