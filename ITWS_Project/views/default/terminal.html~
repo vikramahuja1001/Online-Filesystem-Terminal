@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>AJAX PHP Terminal</title>
+	
+	<script type="text/javascript" language="JavaScript">
+
+		//---------------- AJAX stuff start ---------------------------
+
+		//---------------- AJAX stuff end ---------------------------
+		
+	</script>
+
+	<style>
+		body {
+			width:100%;
+			margin:0px; 
+			padding:0px; 
+			background-color:#000
+		}
+		#container{ 
+		   width:100%; 
+		   margin:0px;
+		   font-family:"Courier New", Courier, mono;
+		   font-size:14px; 
+		} 
+		#top{ 
+		   background-color: #000; 
+		   color: #ccc; 
+		   width: 100%; 
+		} 
+		#bottom{ 
+		   background-color: #000; 
+		   color: #ccc; 
+		   width: 100%; 
+		} 
+		#prompt{ 
+		   background-color: #000; 
+		   color: #ccc; 
+		   float:left;
+		} 
+		#promptinput {
+			height: 14px;
+			font-family:"Courier New", Courier, mono;
+			font-size:14px; 
+			margin-left: 4px;
+			line-height:14px; 
+			background-color:#000; 
+			color:#ccc;
+			border:0; 
+		}
+	</style>
+</head>
+
+<body onload="init()">
+<form name="shell" onsubmit="return formSubmit();">
+<div id="container"> 
+	<div id="top">
+		<!-- This is where all the content goes -->
+	</div>
+	<div id="bottom">
+		<div id="prompt"></div>
+		<input id="promptinput" name="command" type="text" size='50' onkeyup="key(event)" tabindex="1">
+	</div>
+</div> 
+</form>
+</body> 
+
+</html>

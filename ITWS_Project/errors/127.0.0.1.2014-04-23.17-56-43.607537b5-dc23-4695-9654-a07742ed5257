@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.OSError'> [Errno 2] No such file or directory: '/home/vikram/web2py/applications/ITWS_Project/uploads/allfiles.file.bce4484443623fa2.576974686f75745f596f755f2d5f44617669645f4775657474615f666561742e5f55736865722e6d7033.mp3'"
+p3
+sS'layer'
+p4
+S'/home/vikram/web2py/applications/ITWS_Project/compiled/controllers.default.call.pyc'
+p5
+sS'code'
+p6
+S'<code object <module> at 0x7fc8705d6a30, file "/home/vikram/web2py/applications/ITWS_Project/compiled/controllers.default.call.py", line 10>'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/home/vikram/web2py/gluon/restricted.py", line 217, in restricted\n    exec ccode in environment\n  File "/home/vikram/web2py/applications/ITWS_Project/compiled/controllers.default.call.py", line 420, in <module>\n  File "/home/vikram/web2py/gluon/globals.py", line 372, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/vikram/web2py/applications/ITWS_Project/compiled/controllers.default.call.py", line 404, in call\n  File "/home/vikram/web2py/gluon/tools.py", line 4915, in __call__\n    return self.serve_json(request.args[1:])\n  File "/home/vikram/web2py/gluon/tools.py", line 4603, in serve_json\n    s = universal_caller(self.json_procedures[args[0]], *args[1:], **d)\n  File "/home/vikram/web2py/gluon/tools.py", line 4274, in universal_caller\n    return f(**arg_dict)\n  File "/home/vikram/web2py/applications/ITWS_Project/compiled/controllers.default.call.py", line 247, in delete\nOSError: [Errno 2] No such file or directory: \'/home/vikram/web2py/applications/ITWS_Project/uploads/allfiles.file.bce4484443623fa2.576974686f75745f596f755f2d5f44617669645f4775657474615f666561742e5f55736865722e6d7033.mp3\'\n'
+p11
+s.

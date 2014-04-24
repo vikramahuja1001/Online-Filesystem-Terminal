@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>AJAX PHP Terminal</title>
+
+<script type="text/javascript" language="JavaScript">
+var current_line = 0;
+var command_hist = new Array();
+var last = 0;
+
+var the_cwd;
+var the_prompt="vikram";
+var color = 'linux';
+
+function key(e) {
+	if (!e) var e = window.event;
+
+	if (e.keyCode == 38 && current_line < command_hist.length) {
+		if (current_line == 0) {
+			command_hist.unshift(document.shell.command.value);
+			current_line++;
+		}
+		document.shell.command.value = command_hist[current_line];
+		current_line++;
+	}
+
+	if (e.keyCode == 40 && current_line > 0) {
+		current_line--;
+		document.shell.command.value = command_hist[current_line];
+	}
+}
+
+
+function init() {
+	document.shell.setAttribute("autocomplete", "off");
+	document.shell.command.focus();
+
+	the_cwd = 'Path';the_prompt = 'Vikram';
+	document.getElementById("prompt").innerHTML = the_prompt + ":" + the_cwd + "> ";
+
+	}
+
+
+//---------------- AJAX stuff start ---------------------------
+function createRequestObject() {
+	var ro;
+	var browser = navigator.appName;
+	if(browser == "Microsoft Internet Explorer"){
+		ro = new ActiveXObject("Microsoft.XMLHTTP");
+	}else{
+		ro = new XMLHttpRequest();
+	}
+	return ro;
+}
+
+var http = createRequestObject();
+
+function sendRequest(command) {
+	console.log(command)
+	http.open('get', 'parse.html?command=' + command);
+	http.onreadystatechange = handleResponse;
+	http.send(null);
+}
+
+function handleResponse() {
+	if(http.readyState == 4){
+		var response = http.responseText;
+		var update = new Array();
+
+		if(response.indexOf('|' != -1)) {
+			update = response.split('|');
+			switch (update[0]) {
+				case 'command':
+					if (update[2]) { //cwd (only if changed)
+						the_cwd = update[2];
+					}
+					document.getElementById("top").innerHTML += "<pre>" + update[1] + "</pre>";
+					document.getElementById("prompt").innerHTML = the_prompt + ":" + the_cwd + "> ";
+					document.shell.command.value = "";
+					document.shell.command.focus();
+					document.shell.command.select();
+					break;
+				case 'prompt':
+					the_prompt = update[1];
+					break;		 
+			}
+		}
+	}
+}
+
+function formSubmit () {
+	document.getElementById("top").innerHTML += the_prompt + ":" + the_cwd + "> ";
+	document.getElementById("top").innerHTML += document.shell.command.value;
+	var a=document.shell.command.value;
+	var res = a.split(" ");
+	var arr = ["ls","","exit","logout","clear","reset","mkdir","rmdir","rm","cat","head","tail","cd","echo","mv","cp","tree","find"];
+        var position;
+         
+	for(var n = 0;n<arr.length;n++){
+		 if (arr[n] == res[0] ){
+			 position= n;
+			 break;
+		 }
+		else
+			position= -1;
+	}
+
+	if(a!="")
+		command_hist.unshift(document.shell.command.value);
+        if(position!=-1){
+	if (res[0]=="reset" | res[0]=="clear") {
+		document.getElementById("top").innerHTML ="";
+		document.getElementById("promptinput").value="";
+		document.getElementById("promptinput").focus();
+		document.getElementById("promptinput").select();
+		document.shell.command.focus;
+		return false;
+	}
+	else if(res[0]=="exit")
+	{
+		document.getElementById("top").innerHTML ="";
+		document.getElementById("promptinput").value="";
+		window.location="home.html";
+	}
+	else if (res[0]=="logout")
+	{
+		document.getElementById("top").innerHTML ="";
+		document.getElementById("promptinput").value="";
+		window.location="user/logout?_next=/ITWS_Project/default/welcome";
+	}
+	else if(res[0]=="")
+	{
+		document.getElementById("top").innerHTML += "</br>";
+		window.setTimeout(function ()
+		{
+		       document.getElementById('promptinput').focus();
+		}, 0);
+		document.shell.command.focus;
+		return false;
+	}
+	else if(res[0]=="echo")
+	{
+		document.getElementById("top").innerHTML += "</br>";
+		document.getElementById("top").innerHTML += res[1];
+		document.getElementById("top").innerHTML += "</br>";
+		document.getElementById("promptinput").value="";
+		window.setTimeout(function ()
+		{
+		       document.getElementById('promptinput').focus();
+		}, 0);
+		return false;
+	}
+	sendRequest(document.shell.command.value); 
+	document.getElementById("top").innerHTML += "</br>";
+	document.getElementById("promptinput").value="";
+		window.setTimeout(function ()
+		{
+		       document.getElementById('promptinput').focus();
+		}, 0);
+	document.shell.command.focus;
+	document.getElementById("promptinput").focus();
+	document.getElementById("promptinput").select();
+	return false;
+	}
+	else{
+		document.getElementById("top").innerHTML += "</br>";
+		var b="Command Not Found.";
+		document.getElementById("top").innerHTML += res[0] + ":" + b  ;
+		document.getElementById("top").innerHTML += "</br>";
+		document.getElementById("promptinput").value="";
+		window.setTimeout(function ()
+		{
+		       document.getElementById('promptinput').focus();
+		}, 0);
+		return false;
+	}
+}
+
+</script>
+
+<style>
+body {
+width:100%;
+margin:0px; 
+padding:0px; 
+	background-color:#000
+}
+#container{ 
+width:100%; 
+margin:0px;
+       font-family:"Courier New", Courier, mono;
+       font-size:14px; 
+} 
+#top{ 
+	background-color: #000; 
+color: #ccc; 
+width: 100%; 
+} 
+#bottom{ 
+	background-color: #000; 
+color: #ccc; 
+width: 100%; 
+} 
+#prompt{ 
+	background-color: #000; 
+color: #ccc; 
+float:left;
+} 
+#promptinput {
+height: 14px;
+	font-family:"Courier New", Courier, mono;
+	font-size:14px; 
+	margin-left: 4px;
+	line-height:14px; 
+	background-color:#000; 
+color:#ccc;
+border:0; 
+}
+</style>
+</head>
+
+<body onload="init()">
+<form name="shell" onsubmit="return formSubmit();">
+<div id="container"> 
+<div id="top">
+<!-- This is where all the content goes -->
+</div>
+<div id="bottom">
+<div id="prompt"></div>
+<input id="promptinput" name="command" type="text" size='50' onkeyup="key(event)" tabindex="1">
+</div>
+</div> 
+</form>
+</body> 
+
+</html>
